@@ -37,10 +37,11 @@ export default function CompanyIntroSite() {
         { title: 'Impact', desc: 'Targeting green synthesis and energy conversion.' },
       ],
 
+      // stats: 仅 value
       stats: [
         { value: 'Fellowship' },
         { value: 'Rearch area' },
-        { value: 'Lnstioutional links' },
+        { value: 'Instioutional links' },
         { value: 'Location' },
       ],
 
@@ -105,8 +106,7 @@ export default function CompanyIntroSite() {
       testimonials: [],
 
       careers: {
-        note:
-          'We welcome motivated students and collaborators. Reach out with your CV and interests.',
+        note: 'We welcome motivated students and collaborators. Reach out with your CV and interests.',
         roles: [
           { title: 'Honours/MPhil/PhD', type: 'Open', link: '#contact' },
           { title: 'Visiting Students', type: 'Open', link: '#contact' },
@@ -138,15 +138,10 @@ export default function CompanyIntroSite() {
 
   return (
     <div className="min-h-screen w-full text-neutral-900 bg-gradient-to-b from-orange-50 via-orange-50 to-orange-100">
+      {/* Navbar */}
       <header className="sticky top-0 z-50 backdrop-blur bg-orange-100/80 border-b border-orange-200">
         <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
-          <a href="#home" className="font-semibold text-lg tracking-tight flex items-center gap-2">
-            <img
-              src="/usyd-logo.png"
-              alt="University of Sydney"
-              className="h-6 w-auto"
-              onError={(e) => ((e.currentTarget as HTMLImageElement).style.display = 'none')}
-            />
+          <a href="#home" className="font-semibold text-lg tracking-tight">
             {data.name}
           </a>
           <nav className="hidden md:flex gap-6 text-sm">
@@ -165,6 +160,7 @@ export default function CompanyIntroSite() {
         </div>
       </header>
 
+      {/* Hero */}
       <section id="home" className="relative overflow-hidden">
         <div className="mx-auto max-w-6xl px-4 py-20 md:py-28 grid md:grid-cols-2 gap-10 items-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
@@ -185,13 +181,17 @@ export default function CompanyIntroSite() {
                 {data.heroCTA.secondary.label}
               </a>
             </div>
+
+            {/* stats 仅显示 value */}
             <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {data.stats.map((s, i) => (
-                <div key={i} className="rounded-2xl border border-orange-200 p-4 bg-white/70 backdrop-blur">
+              {data.stats.map((s: { value: string }, i: number) => (
+                <div
+                  key={i}
+                  className="rounded-2xl border border-orange-200 p-4 bg-white/70 backdrop-blur"
+                >
                   <div className="text-2xl font-semibold leading-snug whitespace-pre-line break-words">
                     {s.value}
                   </div>
-                  <div className="text-xs text-neutral-600 mt-1 whitespace-pre-line"></div>
                 </div>
               ))}
             </div>
@@ -215,6 +215,7 @@ export default function CompanyIntroSite() {
         </div>
       </section>
 
+      {/* About */}
       <Section id="about" title="About">
         <p className="text-neutral-700 leading-relaxed">{data.vision}</p>
         <ul className="mt-6 grid sm:grid-cols-3 gap-4">
@@ -229,6 +230,7 @@ export default function CompanyIntroSite() {
         </ul>
       </Section>
 
+      {/* Activities */}
       <Section id="services" title="Activities">
         <div className="grid md:grid-cols-2 gap-4">
           {data.services.map((s, i) => (
@@ -245,6 +247,7 @@ export default function CompanyIntroSite() {
         </div>
       </Section>
 
+      {/* Resources */}
       <Section id="products" title="Resources">
         <div className="grid gap-4 md:grid-cols-2">
           {data.products.map((p, i) => (
@@ -269,6 +272,7 @@ export default function CompanyIntroSite() {
         </div>
       </Section>
 
+      {/* Timeline */}
       <Section id="timeline" title="Timeline">
         <div className="relative pl-6">
           <div className="absolute left-0 top-0 bottom-0 w-px bg-orange-300" />
@@ -286,6 +290,7 @@ export default function CompanyIntroSite() {
         </div>
       </Section>
 
+      {/* People */}
       <Section id="team" title="People">
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {data.team.map((m, i) => (
@@ -299,6 +304,7 @@ export default function CompanyIntroSite() {
         </div>
       </Section>
 
+      {/* Affiliations */}
       <Section title="Affiliations">
         <div className="grid md:grid-cols-2 gap-4">
           <Card>
@@ -318,6 +324,7 @@ export default function CompanyIntroSite() {
         </div>
       </Section>
 
+      {/* Join */}
       <Section id="careers" title="Join">
         <p className="text-neutral-700 leading-relaxed">{data.careers.note}</p>
         <div className="mt-4 grid md:grid-cols-3 gap-4">
@@ -333,6 +340,7 @@ export default function CompanyIntroSite() {
         </div>
       </Section>
 
+      {/* Contact */}
       <Section id="contact" title="Contact">
         <div className="grid md:grid-cols-2 gap-6">
           <Card>
@@ -345,7 +353,11 @@ export default function CompanyIntroSite() {
             <div className="flex items-center gap-3 text-sm mt-2">
               <MapPin className="w-4 h-4" /> {data.contact.address}
             </div>
-            <a href={data.contact.map} target="_blank" className="mt-4 inline-flex items-center gap-2 text-sm underline underline-offset-4">
+            <a
+              href={data.contact.map}
+              target="_blank"
+              className="mt-4 inline-flex items-center gap-2 text-sm underline underline-offset-4"
+            >
               View Map <ChevronRight className="w-4 h-4" />
             </a>
           </Card>
@@ -358,12 +370,15 @@ export default function CompanyIntroSite() {
                 <button className="rounded-2xl px-4 py-2 text-sm bg-neutral-900 text-white hover:opacity-90">Send</button>
               </form>
             ) : (
-              <div className="text-sm text-neutral-600">Add an email in <code>data.contact.email</code> to enable the form.</div>
+              <div className="text-sm text-neutral-600">
+                Add an email in <code>data.contact.email</code> to enable the form.
+              </div>
             )}
           </Card>
         </div>
       </Section>
 
+      {/* Footer */}
       <footer className="mt-16 border-t border-orange-200">
         <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600">{data.footer}</div>
       </footer>
