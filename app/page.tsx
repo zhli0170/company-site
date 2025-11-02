@@ -38,10 +38,10 @@ export default function CompanyIntroSite() {
       ],
 
       stats: [
-        { label: 'Established', value: '2024' },
-        { label: 'Publications', value: '30+' },
-        { label: 'Focus', value: 'Photocatalysis\nCO₂RR\nGreen synthesis' },
-        { label: 'Location', value: 'Sydney, AU' },
+        { value: 'Fellowship' },
+        { value: 'Rearch area' },
+        { value: 'Lnstioutional links' },
+        { value: 'Location' },
       ],
 
       services: [
@@ -191,7 +191,7 @@ export default function CompanyIntroSite() {
                   <div className="text-2xl font-semibold leading-snug whitespace-pre-line break-words">
                     {s.value}
                   </div>
-                  <div className="text-xs text-neutral-600 mt-1 whitespace-pre-line">{s.label}</div>
+                  <div className="text-xs text-neutral-600 mt-1 whitespace-pre-line"></div>
                 </div>
               ))}
             </div>
