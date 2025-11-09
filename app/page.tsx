@@ -139,7 +139,6 @@ export default function CompanyIntroSite() {
     <div className="min-h-screen w-full text-neutral-900 bg-orange-100">
       {/* Navbar */}
       <header className="sticky top-0 z-50 bg-orange-100 border-b border-orange-200">
-
         <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
           <a href="#home" className="font-semibold text-lg tracking-tight">
             {data.name}
@@ -151,14 +150,9 @@ export default function CompanyIntroSite() {
               </a>
             ))}
           </nav>
-          <a
-            href={data.heroCTA.primary.href}
-            className="inline-flex items-center gap-2 rounded-2xl px-4 py-2 text-sm bg-neutral-900 text-white hover:opacity-90"
-          >
-            <Phone className="w-4 h-4" /> Visit
-          </a>
         </div>
       </header>
+
 
       {/* Hero */}
       <section id="home" className="relative overflow-hidden">
