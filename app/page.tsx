@@ -136,9 +136,10 @@ export default function CompanyIntroSite() {
 
 
   return (
-    <div className="min-h-screen w-full text-neutral-900 bg-gradient-to-b from-orange-50 via-orange-50 to-orange-100">
+    <div className="min-h-screen w-full text-neutral-900 bg-orange-100">
       {/* Navbar */}
-      <header className="sticky top-0 z-50 backdrop-blur bg-orange-100/80 border-b border-orange-200">
+      <header className="sticky top-0 z-50 bg-orange-100 border-b border-orange-200">
+
         <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
           <a href="#home" className="font-semibold text-lg tracking-tight">
             {data.name}
@@ -188,7 +189,7 @@ export default function CompanyIntroSite() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="relative"
           >
-            <div className="aspect-[4/3] rounded-3xl border border-orange-200 bg-gradient-to-br from-orange-100 to-orange-200 grid place-items-center">
+            <div className="aspect-[4/3] rounded-3xl border border-orange-200 bg-orange-100 grid place-items-center">
               <Globe className="w-24 h-24 opacity-60" />
             </div>
             <div className="hidden md:block absolute -bottom-6 -left-6 rounded-2xl px-4 py-3 bg-white/85 border border-orange-200 text-sm shadow">
