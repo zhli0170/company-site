@@ -166,21 +166,7 @@ export default function CompanyIntroSite() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <h1 className="text-3xl md:text-5xl font-bold leading-tight">{data.tagline}</h1>
             <p className="mt-5 text-neutral-700">{data.mission}</p>
-            <div className="mt-8 flex gap-3">
-              <a
-                href={data.heroCTA.primary.href}
-                className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm bg-neutral-900 text-white hover:opacity-90"
-              >
-                {data.heroCTA.primary.label}
-                <ChevronRight className="w-4 h-4" />
-              </a>
-              <a
-                href={data.heroCTA.secondary.href}
-                className="inline-flex items-center gap-2 rounded-2xl px-5 py-3 text-sm border border-neutral-300 hover:bg-white/60"
-              >
-                {data.heroCTA.secondary.label}
-              </a>
-            </div>
+
 
             {/* stats 仅显示 value */}
             <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
