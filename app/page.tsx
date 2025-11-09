@@ -169,9 +169,10 @@ export default function CompanyIntroSite() {
                   key={i}
                   className="rounded-2xl border border-orange-200 p-4 bg-white/70 backdrop-blur"
                 >
-                  <div className="text-2xl font-semibold leading-snug whitespace-pre-line break-words">
+                  <div className="text-2xl font-semibold leading-snug whitespace-nowrap truncate">
                     {s.value}
                   </div>
+
                 </div>
               ))}
             </div>
