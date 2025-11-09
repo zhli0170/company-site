@@ -127,14 +127,13 @@ export default function CompanyIntroSite() {
   );
 
   const nav = [
-    { id: 'about', label: 'About' },
-    { id: 'services', label: 'Activities' },
-    { id: 'products', label: 'Resources' },
-    { id: 'timeline', label: 'Timeline' },
     { id: 'team', label: 'People' },
-    { id: 'careers', label: 'Join' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'publications', label: 'Publications' },
+    { id: 'blog', label: 'Rearch Blog' },
+    { id: 'facilities', label: 'Facilities' },
+    { id: 'projects', label: 'Project' },
   ];
+
 
   return (
     <div className="min-h-screen w-full text-neutral-900 bg-gradient-to-b from-orange-50 via-orange-50 to-orange-100">
@@ -363,6 +362,69 @@ export default function CompanyIntroSite() {
           </Card>
         </div>
       </Section>
+      {/* Publications */}
+      <Section id="publications" title="Publications">
+        <div className="grid md:grid-cols-2 gap-4">
+          <Card>
+            <div className="text-sm text-neutral-600 mb-2">Recent</div>
+            <ul className="text-sm leading-relaxed list-disc pl-5">
+              <li>Coming soon — add your latest papers here.</li>
+            </ul>
+          </Card>
+          <Card>
+            <div className="text-sm text-neutral-600 mb-2">Archive</div>
+            <p className="text-sm text-neutral-700">
+              Link to Google Scholar / ORCID / group BibTeX later.
+            </p>
+          </Card>
+        </div>
+      </Section>
+
+      {/* Rearch Blog */}
+      <Section id="blog" title="Rearch Blog">
+        <Card>
+          <p className="text-sm text-neutral-700">
+            Post short updates, figures, or lab notes here. You can also link to an external blog.
+          </p>
+        </Card>
+      </Section>
+
+      {/* Facilities */}
+      <Section id="facilities" title="Facilities">
+        <div className="grid md:grid-cols-3 gap-4">
+          <Card>
+            <div className="font-medium">Spectroscopy</div>
+            <div className="text-sm text-neutral-600 mt-1">UV–Vis, PL, time-resolved...</div>
+          </Card>
+          <Card>
+            <div className="font-medium">Photoelectrochemistry</div>
+            <div className="text-sm text-neutral-600 mt-1">Potentiostats, solar simulators...</div>
+          </Card>
+          <Card>
+            <div className="font-medium">Materials</div>
+            <div className="text-sm text-neutral-600 mt-1">Synthesis & characterization.</div>
+          </Card>
+        </div>
+      </Section>
+
+      {/* Project */}
+      <Section id="projects" title="Project">
+        <div className="grid md:grid-cols-2 gap-4">
+          <Card>
+            <div className="font-medium">Photocatalytic CO₂ Reduction</div>
+            <div className="text-sm text-neutral-700 mt-1">
+              Brief intro or external link.
+            </div>
+          </Card>
+          <Card>
+            <div className="font-medium">Selective Oxidation</div>
+            <div className="text-sm text-neutral-700 mt-1">
+              Brief intro or external link.
+            </div>
+          </Card>
+        </div>
+      </Section>
+
 
       {/* Footer */}
       <footer className="mt-16 border-t border-orange-200">
