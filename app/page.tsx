@@ -3,27 +3,56 @@
 import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 
-export default function LabBlankSite() {
-  // 顶部导航（锚点顺序可自行调整/增减）
+export default function SUSTechLabBlank() {
+  // Nav mirrors the site's sections
   const nav = [
     { id: 'home', label: 'Home' },
     { id: 'research', label: 'Research' },
     { id: 'publications', label: 'Publications' },
-    { id: 'people', label: 'People' },
+    { id: 'members', label: 'Members' },
     { id: 'news', label: 'News' },
-    { id: 'facilities', label: 'Facilities' },
-    { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },
   ];
 
+  // Research sub-areas (placeholders), reflecting the site's 3 topics
+  const researchTopics = [
+    { title: '[Neuronal Structural Biology]', brief: '[Short description placeholder]' },
+    { title: '[Synaptic Molecular Biology]', brief: '[Short description placeholder]' },
+    { title: '[Phase Separation in Nervous System]', brief: '[Short description placeholder]' },
+  ];
+
+  // Selected pubs (placeholder cards)
+  const selectedPubs = Array.from({ length: 3 }).map((_, i) => ({
+    title: `[Selected Paper Title #${i + 1}]`,
+    meta: `[Authors] · [Journal] · [Year]`,
+  }));
+
+  // All pubs by year (placeholder)
+  const allYears = [
+    '2025', '2024', '2023', '2022', '2021', '2020', '2019',
+    '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', 'Before 2010',
+  ];
+
+  // Members groups (placeholder)
+  const memberGroups = [
+    { group: 'Principal Investigator', people: ['[Name]'] },
+    { group: 'Current', people: ['[Name 1]', '[Name 2]'] },
+    { group: 'Alumni', people: ['[Name A]', '[Name B]'] },
+  ];
+
+  // News list (placeholder)
+  const newsItems = Array.from({ length: 6 }).map((_, i) => ({
+    date: '[YYYY-MM-DD]',
+    title: `[News item title #${i + 1}]`,
+  }));
+
   return (
-    // 纯色背景（需要其它颜色可改 bg-orange-100 为任意 Tailwind 颜色或 16 进制）
-    <div className="min-h-screen w-full text-neutral-900 bg-orange-100">
-      {/* 顶部导航 */}
-      <header className="sticky top-0 z-50 bg-orange-100 border-b border-orange-200">
+    <div className="min-h-screen w-full text-neutral-900 bg-white">
+      {/* Top navbar */}
+      <header className="sticky top-0 z-50 bg-white border-b border-neutral-200">
         <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
           <a href="#home" className="font-semibold text-lg tracking-tight">
-            MJZ Lab · SUSTech
+            [Lab Name]
           </a>
           <nav className="hidden md:flex gap-6 text-sm">
             {nav.map((n) => (
@@ -35,151 +64,142 @@ export default function LabBlankSite() {
         </div>
       </header>
 
-      {/* Hero / Home */}
-      <section id="home" className="mx-auto max-w-6xl px-4 py-16 md:py-24">
+      {/* HOME */}
+      <section id="home" className="mx-auto max-w-6xl px-4 py-14 md:py-20">
         <motion.h1
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.45 }}
           className="text-3xl md:text-5xl font-bold leading-tight"
         >
-          {/* 标题占位 */}
-          [Lab Title Here]
+          [Research Highlight]
         </motion.h1>
+
         <p className="mt-4 text-neutral-700">
-          {/* 简介占位（1–2 句） */}
-          [One-sentence lab mission or tagline goes here.]
+          [Two–three sentence highlight placeholder. Keep this short and high-level.]
         </p>
 
-        {/* 可选：放置 3~4 个亮点卡片；空白版默认显示占位 */}
-        <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <Card key={i} dashed>
-              <div className="text-sm text-neutral-600">[Highlight #{i + 1}]</div>
+        {/* Optional highlight bullets (as seen on site hero area) */}
+        <ul className="mt-6 grid md:grid-cols-3 gap-3">
+          {['[Highlight point #1]', '[Highlight point #2]', '[Highlight point #3]'].map((t, i) => (
+            <li key={i} className="text-sm text-neutral-700">
+              • {t}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* RESEARCH */}
+      <Section id="research" title="Research">
+        <div className="grid md:grid-cols-3 gap-4">
+          {researchTopics.map((r, i) => (
+            <Card key={i}>
+              <div className="text-lg font-semibold">{r.title}</div>
+              <p className="text-sm text-neutral-700 mt-2">{r.brief}</p>
+              <a href="#" className="mt-3 inline-block text-sm underline underline-offset-4">
+                [READ MORE]
+              </a>
             </Card>
           ))}
         </div>
-      </section>
-
-      {/* Research */}
-      <Section id="research" title="Research">
-        <Grid cols={3}>
-          {Array.from({ length: 6 }).map((_, i) => (
-            <Card key={i} dashed>
-              <div className="font-medium">[Research Topic #{i + 1}]</div>
-              <p className="text-sm text-neutral-700 mt-2">
-                [Short description...]
-              </p>
-            </Card>
-          ))}
-        </Grid>
       </Section>
 
-      {/* Publications */}
+      {/* PUBLICATIONS */}
       <Section id="publications" title="Publications">
-        <Grid cols={2}>
-          <Card dashed>
-            <div className="text-sm text-neutral-600 mb-2">[Recent]</div>
-            <ul className="list-disc pl-5 text-sm leading-relaxed">
-              <li>[YYYY] [Authors]. [Title]. [Journal].</li>
-              <li>[YYYY] [Authors]. [Title]. [Journal].</li>
-            </ul>
-          </Card>
-          <Card dashed>
-            <div className="text-sm text-neutral-600 mb-2">[Archive / Links]</div>
-            <p className="text-sm text-neutral-700">
-              [Google Scholar / ORCID / DBLP / PubMed links here]
-            </p>
-          </Card>
-        </Grid>
+        {/* Selected Publications */}
+        <div className="mb-6">
+          <div className="text-base font-semibold">Selected Publications</div>
+          <div className="mt-3 grid md:grid-cols-2 gap-4">
+            {selectedPubs.map((p, i) => (
+              <Card key={i}>
+                <div className="font-medium">{p.title}</div>
+                <div className="text-sm text-neutral-600 mt-1">{p.meta}</div>
+              </Card>
+            ))}
+          </div>
+          <a href="#" className="mt-3 inline-block text-sm underline underline-offset-4">
+            [READ MORE]
+          </a>
+        </div>
+
+        {/* All Publications (years) */}
+        <div className="mt-8">
+          <div className="text-base font-semibold">All Publications</div>
+          <div className="mt-3 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            {allYears.map((y) => (
+              <Card key={y}>
+                <div className="font-medium">{y}</div>
+                <ul className="list-disc pl-5 text-sm text-neutral-700 mt-2">
+                  <li>[Paper #1 placeholder]</li>
+                  <li>[Paper #2 placeholder]</li>
+                </ul>
+              </Card>
+            ))}
+          </div>
+        </div>
       </Section>
 
-      {/* People */}
-      <Section id="people" title="People">
-        <Grid cols={3}>
-          {['PI', 'Postdocs', 'Students'].map((group, i) => (
-            <Card key={i} dashed>
-              <div className="font-medium">[{group}]</div>
+      {/* MEMBERS */}
+      <Section id="members" title="Members">
+        <div className="grid md:grid-cols-3 gap-4">
+          {memberGroups.map((g) => (
+            <Card key={g.group}>
+              <div className="font-semibold">{g.group}</div>
               <ul className="mt-2 text-sm leading-relaxed">
-                <li>[Name 1]</li>
-                <li>[Name 2]</li>
+                {g.people.map((p) => (
+                  <li key={p}>{p}</li>
+                ))}
               </ul>
             </Card>
           ))}
-        </Grid>
+        </div>
       </Section>
 
-      {/* News */}
+      {/* NEWS */}
       <Section id="news" title="News">
-        <Grid cols={2}>
-          {Array.from({ length: 4 }).map((_, i) => (
-            <Card key={i} dashed>
-              <div className="text-xs text-neutral-500">[YYYY-MM-DD]</div>
-              <div className="font-medium mt-1">[News title #{i + 1}]</div>
-              <p className="text-sm text-neutral-700 mt-1">[One-line summary...]</p>
+        <div className="grid md:grid-cols-2 gap-4">
+          {newsItems.map((n, i) => (
+            <Card key={i}>
+              <div className="text-xs text-neutral-500">{n.date}</div>
+              <div className="font-medium mt-1">{n.title}</div>
+              <p className="text-sm text-neutral-700 mt-1">[One–two line summary placeholder]</p>
             </Card>
           ))}
-        </Grid>
+        </div>
       </Section>
 
-      {/* Facilities */}
-      <Section id="facilities" title="Facilities">
-        <Grid cols={3}>
-          {Array.from({ length: 6 }).map((_, i) => (
-            <Card key={i} dashed>
-              <div className="font-medium">[Instrument #{i + 1}]</div>
-              <p className="text-sm text-neutral-700 mt-2">[Brief spec or usage...]</p>
-            </Card>
-          ))}
-        </Grid>
-      </Section>
-
-      {/* Projects */}
-      <Section id="projects" title="Projects">
-        <Grid cols={2}>
-          {Array.from({ length: 4 }).map((_, i) => (
-            <Card key={i} dashed>
-              <div className="font-medium">[Project #{i + 1}]</div>
-              <p className="text-sm text-neutral-700 mt-2">
-                [Short description / external link...]
-              </p>
-            </Card>
-          ))}
-        </Grid>
-      </Section>
-
-      {/* Contact */}
+      {/* CONTACT */}
       <Section id="contact" title="Contact">
-        <Grid cols={2}>
-          <Card dashed>
+        <div className="grid md:grid-cols-2 gap-4">
+          <Card>
             <div className="font-medium">[Address]</div>
             <p className="text-sm text-neutral-700 mt-2">
-              [Room / Building], Southern University of Science and Technology, Shenzhen, China
+              [Building / Street], Southern University of Science and Technology, Shenzhen, China
             </p>
-            <a className="underline text-sm mt-3 inline-block" href="#" target="_blank">
+            <a href="#" className="mt-3 inline-block text-sm underline underline-offset-4">
               [View on Map]
             </a>
           </Card>
-          <Card dashed>
-            <div className="font-medium">[Email / Openings]</div>
+          <Card>
+            <div className="font-medium">[Email / Phone]</div>
             <p className="text-sm text-neutral-700 mt-2">
-              [lab@domain.edu] · [Recruiting notice text...]
+              [lab@domain.edu] · [+86-xxx-xxxx-xxxx]
             </p>
           </Card>
-        </Grid>
+        </div>
       </Section>
 
       {/* Footer */}
-      <footer className="mt-16 border-t border-orange-200">
+      <footer className="mt-16 border-t border-neutral-200">
         <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600">
-          © {new Date().getFullYear()} MJZ Lab · SUSTech. [Footer text here]
+          © {new Date().getFullYear()} [Lab Name]. All rights reserved.
         </div>
       </footer>
     </div>
   );
 }
 
-/* ---------- 小组件 ---------- */
+/* ---------- UI helpers ---------- */
 
 function Section({
   id,
@@ -193,10 +213,10 @@ function Section({
   return (
     <section id={id} className="mx-auto max-w-6xl px-4 py-14">
       <motion.h2
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: 8 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 0.35 }}
         className="text-xl md:text-2xl font-semibold"
       >
         {title}
@@ -206,29 +226,9 @@ function Section({
   );
 }
 
-function Grid({ cols = 3, children }: { cols?: 2 | 3; children: ReactNode }) {
+function Card({ children }: { children: ReactNode }) {
   return (
-    <div
-      className={`grid gap-4 ${cols === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'
-        }`}
-    >
-      {children}
-    </div>
-  );
-}
-
-function Card({
-  children,
-  dashed = false,
-}: {
-  children: ReactNode;
-  dashed?: boolean;
-}) {
-  return (
-    <div
-      className={`rounded-2xl p-5 bg-white/70 backdrop-blur border ${dashed ? 'border-orange-300 border-dashed' : 'border-orange-200'
-        }`}
-    >
+    <div className="rounded-2xl border border-neutral-200 p-5 bg-white">
       {children}
     </div>
   );
