@@ -1,235 +1,454 @@
 'use client';
 
-import type { ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import React, { useMemo, useRef, useState } from 'react';
 
-export default function SUSTechLabBlank() {
-  // Nav mirrors the site's sections
-  const nav = [
-    { id: 'home', label: 'Home' },
-    { id: 'research', label: 'Research' },
-    { id: 'publications', label: 'Publications' },
-    { id: 'members', label: 'Members' },
-    { id: 'news', label: 'News' },
-    { id: 'contact', label: 'Contact' },
-  ];
+/**
+ * Next.js app/page.tsx
+ * - “空白版”结构，参考 mjzlab.bio.sustech.edu.cn 的版块布局
+ * - 无外部库（不依赖 jQuery/Swiper），使用简单的 CSS Scroll Snap 轮播
+ * - 保留导航/横幅/Research/ Publications/ Members/ News/ Footer 结构
+ * - 内容全部留空或占位，后续可直接替换
+ * - 需要 Tailwind（建议已在项目里启用）。若未启用，也可正常渲染但不美观
+ */
 
-  // Research sub-areas (placeholders), reflecting the site's 3 topics
-  const researchTopics = [
-    { title: '[Neuronal Structural Biology]', brief: '[Short description placeholder]' },
-    { title: '[Synaptic Molecular Biology]', brief: '[Short description placeholder]' },
-    { title: '[Phase Separation in Nervous System]', brief: '[Short description placeholder]' },
-  ];
+export default function Page() {
+  // 简单的移动端菜单开合
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Selected pubs (placeholder cards)
-  const selectedPubs = Array.from({ length: 3 }).map((_, i) => ({
-    title: `[Selected Paper Title #${i + 1}]`,
-    meta: `[Authors] · [Journal] · [Year]`,
-  }));
+  // 简单轮播（横幅）
+  const heroRef = useRef<HTMLDivElement | null>(null);
+  const heroSlides = useMemo(
+    () => [
+      { alt: 'BANNER 1' },
+      { alt: 'BANNER 2' },
+      { alt: 'BANNER 3' },
+    ],
+    []
+  );
 
-  // All pubs by year (placeholder)
-  const allYears = [
-    '2025', '2024', '2023', '2022', '2021', '2020', '2019',
-    '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', 'Before 2010',
-  ];
+  // 简单轮播（News）
+  const newsRef = useRef<HTMLDivElement | null>(null);
+  const newsSlides = useMemo(
+    () => [
+      { date: 'YYYY-MM-DD', title: '[News headline placeholder]' },
+      { date: 'YYYY-MM-DD', title: '[News headline placeholder]' },
+      { date: 'YYYY-MM-DD', title: '[News headline placeholder]' },
+    ],
+    []
+  );
 
-  // Members groups (placeholder)
-  const memberGroups = [
-    { group: 'Principal Investigator', people: ['[Name]'] },
-    { group: 'Current', people: ['[Name 1]', '[Name 2]'] },
-    { group: 'Alumni', people: ['[Name A]', '[Name B]'] },
-  ];
+  // 生成 SVG 占位图（data URI）
+  const ph = (w: number, h: number, label: string) =>
+    `data:image/svg+xml;utf8,${encodeURIComponent(
+      `<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}'>
+        <rect width='100%' height='100%' fill='#EEE'/>
+        <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' fill='#999' font-size='${Math.max(
+        Math.floor(Math.min(w, h) / 10),
+        12
+      )}'>${label}</text>
+      </svg>`
+    )}`;
 
-  // News list (placeholder)
-  const newsItems = Array.from({ length: 6 }).map((_, i) => ({
-    date: '[YYYY-MM-DD]',
-    title: `[News item title #${i + 1}]`,
-  }));
+  const scrollByWidth = (ref: React.RefObject<HTMLDivElement | null>, direction: 1 | -1) => {
+    const el = ref.current;
+    if (!el) return;
+    const dx = el.clientWidth * direction;
+    el.scrollBy({ left: dx, behavior: 'smooth' });
+  };
 
   return (
-    <div className="min-h-screen w-full text-neutral-900 bg-white">
-      {/* Top navbar */}
-      <header className="sticky top-0 z-50 bg-white border-b border-neutral-200">
-        <div className="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
-          <a href="#home" className="font-semibold text-lg tracking-tight">
-            [Lab Name]
-          </a>
-          <nav className="hidden md:flex gap-6 text-sm">
-            {nav.map((n) => (
-              <a key={n.id} href={`#${n.id}`} className="hover:opacity-80">
-                {n.label}
-              </a>
-            ))}
-          </nav>
+    <div className="min-h-screen bg-white text-neutral-900">
+      {/* 顶部 Header */}
+      <header className="border-b border-neutral-200">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="flex h-16 items-center justify-between">
+            {/* Logo */}
+            <a href="/" className="flex items-center gap-3">
+              <img
+                src={ph(220, 60, '[LOGO]')}
+                alt="LOGO"
+                className="h-8 w-auto"
+              />
+              <span className="sr-only">Home</span>
+            </a>
+
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex items-center gap-6 text-sm">
+              <a href="/index.html?lang=en-us" className="hover:opacity-80">HOME</a>
+
+              <div className="group relative">
+                <a href="/research/index/cid/133.html?lang=en-us&nvid=8" className="hover:opacity-80">
+                  RESEARCH
+                </a>
+                {/* 下拉（占位，无内容） */}
+                <div className="absolute left-0 top-full hidden min-w-[220px] rounded-xl border border-neutral-200 bg-white p-2 shadow-md group-hover:block">
+                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/research/index/cid/166.html?lang=en-us&nvid=23">[Subcat A]</a>
+                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/research/index/cid/133.html?lang=en-us&nvid=8">[Subcat B]</a>
+                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/research/index/cid/134.html?lang=en-us&nvid=9">[Subcat C]</a>
+                </div>
+              </div>
+
+              <div className="group relative">
+                <a href="/publication.html?lang=en-us" className="hover:opacity-80">
+                  PUBLICATIONS
+                </a>
+                <div className="absolute left-0 top-full hidden min-w-[220px] rounded-xl border border-neutral-200 bg-white p-2 shadow-md group-hover:block">
+                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/publication/index/cid/136.html?lang=en-us&nvid=11">[Selected]</a>
+                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/publication/lists/cid/137.html?lang=en-us&nvid=12">[All]</a>
+                </div>
+              </div>
+
+              <div className="group relative">
+                <a href="/faculty.html?lang=en-us" className="hover:opacity-80">
+                  MEMBERS
+                </a>
+                <div className="absolute left-0 top-full hidden min-w-[220px] rounded-xl border border-neutral-200 bg-white p-2 shadow-md group-hover:block">
+                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/faculty/index/cid/139.html?lang=en-us&nvid=13">[PI]</a>
+                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/faculty/index/cid/143.html?lang=en-us&nvid=22">[Current]</a>
+                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/faculty/index/cid/140.html?lang=en-us&nvid=14">[Alumni]</a>
+                </div>
+              </div>
+
+              <a href="/news.html?lang=en-us" className="hover:opacity-80">NEWS</a>
+              <a href="/contact.html?lang=en-us" className="hover:opacity-80">CONTACT</a>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden inline-flex items-center rounded-lg border px-3 py-1.5 text-sm"
+              onClick={() => setMenuOpen(v => !v)}
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? 'CLOSE' : 'MENU'}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Drawer */}
+        {menuOpen && (
+          <div className="md:hidden border-t border-neutral-200">
+            <div className="mx-auto max-w-6xl px-4 py-3 space-y-2 text-sm">
+              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/index.html?lang=en-us">HOME</a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/research/index/cid/133.html?lang=en-us&nvid=8">RESEARCH</a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/publication.html?lang=en-us">PUBLICATIONS</a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/faculty.html?lang=en-us">MEMBERS</a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/news.html?lang=en-us">NEWS</a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/contact.html?lang=en-us">CONTACT</a>
+            </div>
+          </div>
+        )}
       </header>
 
-      {/* HOME */}
-      <section id="home" className="mx-auto max-w-6xl px-4 py-14 md:py-20">
-        <motion.h1
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
-          className="text-3xl md:text-5xl font-bold leading-tight"
-        >
-          [Research Highlight]
-        </motion.h1>
+      {/* 横幅轮播 */}
+      <section className="border-b border-neutral-200">
+        <div className="mx-auto max-w-6xl px-4 py-6">
+          <div className="relative">
+            <div
+              ref={heroRef}
+              className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth rounded-2xl border border-neutral-200"
+            >
+              {heroSlides.map((s, i) => (
+                <div key={i} className="min-w-full snap-start">
+                  <img
+                    src={ph(1600, 600, '[BANNER IMAGE]')}
+                    alt={s.alt}
+                    className="w-full h-[260px] md:h-[380px] object-cover"
+                  />
+                </div>
+              ))}
+            </div>
 
-        <p className="mt-4 text-neutral-700">
-          [Two–three sentence highlight placeholder. Keep this short and high-level.]
-        </p>
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-between">
+              <div className="pointer-events-auto p-2">
+                <button
+                  onClick={() => scrollByWidth(heroRef, -1)}
+                  className="rounded-full border bg-white/80 px-3 py-2 text-xs shadow"
+                >
+                  Prev
+                </button>
+              </div>
+              <div className="pointer-events-auto p-2">
+                <button
+                  onClick={() => scrollByWidth(heroRef, 1)}
+                  className="rounded-full border bg-white/80 px-3 py-2 text-xs shadow"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
 
-        {/* Optional highlight bullets (as seen on site hero area) */}
-        <ul className="mt-6 grid md:grid-cols-3 gap-3">
-          {['[Highlight point #1]', '[Highlight point #2]', '[Highlight point #3]'].map((t, i) => (
-            <li key={i} className="text-sm text-neutral-700">
-              • {t}
-            </li>
-          ))}
-        </ul>
+            <div className="mt-2 text-right text-xs text-neutral-500">01/03</div>
+          </div>
+        </div>
       </section>
 
-      {/* RESEARCH */}
-      <Section id="research" title="Research">
-        <div className="grid md:grid-cols-3 gap-4">
-          {researchTopics.map((r, i) => (
-            <Card key={i}>
-              <div className="text-lg font-semibold">{r.title}</div>
-              <p className="text-sm text-neutral-700 mt-2">{r.brief}</p>
-              <a href="#" className="mt-3 inline-block text-sm underline underline-offset-4">
-                [READ MORE]
-              </a>
-            </Card>
-          ))}
-        </div>
-      </Section>
+      <main>
+        {/* About / Research Highlight */}
+        <section className="mx-auto max-w-6xl px-4 py-10">
+          <h2 className="text-2xl font-semibold">Research Highlight</h2>
+          <div className="mt-6 grid md:grid-cols-2 gap-8">
+            <div>
+              <p className="text-neutral-600">
+                [Brief highlight / Empty placeholder text]
+              </p>
+              <div className="mt-4">
+                <a href="##" className="inline-flex items-center rounded-xl border px-3 py-1.5 text-sm">
+                  READ MORE
+                </a>
+              </div>
+            </div>
 
-      {/* PUBLICATIONS */}
-      <Section id="publications" title="Publications">
-        {/* Selected Publications */}
-        <div className="mb-6">
-          <div className="text-base font-semibold">Selected Publications</div>
-          <div className="mt-3 grid md:grid-cols-2 gap-4">
-            {selectedPubs.map((p, i) => (
-              <Card key={i}>
-                <div className="font-medium">{p.title}</div>
-                <div className="text-sm text-neutral-600 mt-1">{p.meta}</div>
-              </Card>
-            ))}
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[1, 2, 3, 4].map(i => (
+                <figure key={i} className="rounded-xl border p-3">
+                  <img
+                    src={ph(560, 360, '[IMAGE]')}
+                    alt={`Self slide ${i}`}
+                    className="w-full h-40 object-cover rounded-lg"
+                  />
+                  <figcaption className="mt-2 text-sm text-neutral-500">[Caption]</figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
-          <a href="#" className="mt-3 inline-block text-sm underline underline-offset-4">
-            [READ MORE]
-          </a>
-        </div>
+        </section>
 
-        {/* All Publications (years) */}
-        <div className="mt-8">
-          <div className="text-base font-semibold">All Publications</div>
-          <div className="mt-3 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {allYears.map((y) => (
-              <Card key={y}>
-                <div className="font-medium">{y}</div>
-                <ul className="list-disc pl-5 text-sm text-neutral-700 mt-2">
-                  <li>[Paper #1 placeholder]</li>
-                  <li>[Paper #2 placeholder]</li>
-                </ul>
-              </Card>
-            ))}
+        {/* Research */}
+        <section className="bg-neutral-50 border-y border-neutral-200">
+          <div className="mx-auto max-w-6xl px-4 py-10">
+            <h2 className="text-2xl font-semibold">Research</h2>
+            <div className="mt-6 grid md:grid-cols-3 gap-4">
+              {['[Topic A]', '[Topic B]', '[Topic C]'].map((t, i) => (
+                <article key={i} className="rounded-2xl border bg-white p-5">
+                  <img
+                    src={ph(360, 220, '[IMAGE]')}
+                    alt={`Research ${i + 1}`}
+                    className="w-full h-40 object-cover rounded-xl"
+                  />
+                  <h3 className="mt-3 font-medium">{t}</h3>
+                  <p className="mt-1 text-sm text-neutral-600">[Short description]</p>
+                  <div className="mt-3">
+                    <a href="##" className="text-sm underline underline-offset-4">READ MORE</a>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </Section>
+        </section>
 
-      {/* MEMBERS */}
-      <Section id="members" title="Members">
-        <div className="grid md:grid-cols-3 gap-4">
-          {memberGroups.map((g) => (
-            <Card key={g.group}>
-              <div className="font-semibold">{g.group}</div>
-              <ul className="mt-2 text-sm leading-relaxed">
-                {g.people.map((p) => (
-                  <li key={p}>{p}</li>
+        {/* Publications */}
+        <section className="mx-auto max-w-6xl px-4 py-10">
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Selected PUBLICATIONS */}
+            <div>
+              <h2 className="text-2xl font-semibold">Selected PUBLICATIONS</h2>
+              <ul className="mt-6 space-y-4">
+                {[1, 2].map(i => (
+                  <li key={i} className="flex gap-4 rounded-2xl border p-4">
+                    <img
+                      src={ph(160, 120, '[IMG]')}
+                      alt="thumb"
+                      className="h-20 w-28 object-cover rounded-lg"
+                    />
+                    <div className="min-w-0">
+                      <h4 className="text-sm font-medium">
+                        <a href="##">[Paper title]</a>
+                      </h4>
+                      <p className="mt-1 text-sm text-neutral-600">[Authors]. [Journal]. [Year].</p>
+                    </div>
+                  </li>
                 ))}
               </ul>
-            </Card>
-          ))}
-        </div>
-      </Section>
+              <div className="mt-4">
+                <a href="##" className="inline-flex items-center rounded-xl border px-3 py-1.5 text-sm">
+                  READ MORE
+                </a>
+              </div>
+            </div>
 
-      {/* NEWS */}
-      <Section id="news" title="News">
-        <div className="grid md:grid-cols-2 gap-4">
-          {newsItems.map((n, i) => (
-            <Card key={i}>
-              <div className="text-xs text-neutral-500">{n.date}</div>
-              <div className="font-medium mt-1">{n.title}</div>
-              <p className="text-sm text-neutral-700 mt-1">[One–two line summary placeholder]</p>
-            </Card>
-          ))}
-        </div>
-      </Section>
+            {/* ALL PUBLICATIONS */}
+            <div>
+              <h2 className="text-2xl font-semibold">ALL PUBLICATIONS</h2>
+              <div className="mt-4 flex flex-wrap gap-2 text-sm">
+                {['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', 'Before 2010'].map(y => (
+                  <span key={y} className="rounded-lg border px-3 py-1">{y}</span>
+                ))}
+              </div>
 
-      {/* CONTACT */}
-      <Section id="contact" title="Contact">
-        <div className="grid md:grid-cols-2 gap-4">
-          <Card>
-            <div className="font-medium">[Address]</div>
-            <p className="text-sm text-neutral-700 mt-2">
-              [Building / Street], Southern University of Science and Technology, Shenzhen, China
-            </p>
-            <a href="#" className="mt-3 inline-block text-sm underline underline-offset-4">
-              [View on Map]
-            </a>
-          </Card>
-          <Card>
-            <div className="font-medium">[Email / Phone]</div>
-            <p className="text-sm text-neutral-700 mt-2">
-              [lab@domain.edu] · [+86-xxx-xxxx-xxxx]
-            </p>
-          </Card>
-        </div>
-      </Section>
+              <div className="mt-6 space-y-4">
+                {[1, 2].map(i => (
+                  <div key={i} className="rounded-2xl border p-4">
+                    <h4 className="text-sm font-medium">
+                      <a href="##">[Paper title - placeholder]</a>
+                    </h4>
+                    <p className="mt-1 text-sm text-neutral-600">
+                      [Authors]. [Journal], [Volume(Issue)], pages, [Year].
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-4">
+                <a href="##" className="inline-flex items-center rounded-xl border px-3 py-1.5 text-sm">
+                  READ MORE
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Members */}
+        <section className="bg-neutral-50 border-y border-neutral-200">
+          <div className="mx-auto max-w-6xl px-4 py-10">
+            <h2 className="text-2xl font-semibold">MEMBERS</h2>
+            <div className="mt-6 grid lg:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-lg font-medium">[Group one-line intro]</h3>
+
+                <div className="mt-4 rounded-2xl border bg-white p-5">
+                  <div className="flex items-center gap-4">
+                    <img
+                      src={ph(220, 220, '[IMG]')}
+                      alt="PI"
+                      className="h-24 w-24 rounded-xl object-cover"
+                    />
+                    <div>
+                      <div className="font-medium">[PI Name]</div>
+                      <p className="text-sm text-neutral-600">[PI role/affiliation brief]</p>
+                    </div>
+                  </div>
+
+                  <ul className="mt-4 space-y-2 text-sm">
+                    <li><span className="font-medium">[Year]</span> — [Award / Highlight]</li>
+                    <li><span className="font-medium">[Year]</span> — [Award / Highlight]</li>
+                    <li><span className="font-medium">[Year]</span> — [Award / Highlight]</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="rounded-2xl border bg-white p-5">
+                  <h4 className="font-medium">[About the lab]</h4>
+                  <p className="mt-2 text-sm text-neutral-600">[Empty placeholder text]</p>
+                  <hr className="my-4" />
+                  <p className="text-sm text-neutral-600">[Timeline / biography placeholder]</p>
+                </div>
+
+                <div className="rounded-2xl border bg-white p-5">
+                  <div className="grid grid-cols-3 gap-3">
+                    {['Principal Investigator', 'Current', 'Alumni'].map((k, i) => (
+                      <a key={i} href="##" className="rounded-xl border p-3 text-center text-sm hover:bg-neutral-50">
+                        <img
+                          src={ph(160, 120, '[IMG]')}
+                          alt={k}
+                          className="mx-auto h-20 w-auto rounded-md object-cover"
+                        />
+                        <p className="mt-2">{k}</p>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* News（横向滚动） */}
+        <section className="mx-auto max-w-6xl px-4 py-10">
+          <h2 className="text-2xl font-semibold">NEWS</h2>
+
+          <div className="mt-6 relative">
+            <div
+              ref={newsRef}
+              className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth"
+            >
+              {newsSlides.map((n, i) => (
+                <a
+                  key={i}
+                  href="##"
+                  className="min-w-[280px] snap-start rounded-2xl border p-4 hover:bg-neutral-50"
+                >
+                  <div className="text-xs text-neutral-500">{n.date}</div>
+                  <p className="mt-2 text-sm">{n.title}</p>
+                  <div className="mt-3">
+                    <span className="inline-flex items-center rounded-xl border px-2 py-1 text-xs">
+                      READ MORE
+                    </span>
+                  </div>
+                  <div className="mt-3">
+                    <img
+                      src={ph(320, 200, '[IMG]')}
+                      alt="news"
+                      className="w-full h-32 object-cover rounded-lg"
+                    />
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            <div className="pointer-events-none absolute inset-0 flex items-center justify-between">
+              <div className="pointer-events-auto p-2">
+                <button
+                  onClick={() => scrollByWidth(newsRef, -1)}
+                  className="rounded-full border bg-white/80 px-3 py-2 text-xs shadow"
+                >
+                  Prev
+                </button>
+              </div>
+              <div className="pointer-events-auto p-2">
+                <button
+                  onClick={() => scrollByWidth(newsRef, 1)}
+                  className="rounded-full border bg-white/80 px-3 py-2 text-xs shadow"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
 
       {/* Footer */}
-      <footer className="mt-16 border-t border-neutral-200">
-        <div className="mx-auto max-w-6xl px-4 py-10 text-sm text-neutral-600">
-          © {new Date().getFullYear()} [Lab Name]. All rights reserved.
+      <footer className="border-t border-neutral-200">
+        <div className="mx-auto max-w-6xl px-4 py-10">
+          <div className="grid md:grid-cols-[220px,1fr] gap-8">
+            <a href="/" className="block">
+              <img
+                src={ph(220, 60, '[LOGO]')}
+                alt="FOOTER LOGO"
+                className="h-10 w-auto"
+              />
+            </a>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <div className="text-sm font-semibold">Get in Touch</div>
+                <p className="mt-2 text-sm text-neutral-600">[Address / empty placeholder]</p>
+                <div className="mt-3">
+                  <a href="mailto:" className="inline-flex items-center rounded-xl border px-3 py-1.5 text-sm">
+                    Email address
+                  </a>
+                </div>
+              </div>
+
+              <div>
+                <div className="text-sm font-semibold">Links</div>
+                <ul className="mt-2 space-y-2 text-sm">
+                  <li><a href="##" target="_blank" className="hover:underline">[Link A]</a></li>
+                  <li><a href="##" target="_blank" className="hover:underline">[Link B]</a></li>
+                  <li><a href="##" target="_blank" className="hover:underline">[Link C]</a></li>
+                  <li><a href="##" target="_blank" className="hover:underline">[Link D]</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 text-xs text-neutral-500">
+            [Copyright / placeholder]
+          </div>
         </div>
       </footer>
-    </div>
-  );
-}
-
-/* ---------- UI helpers ---------- */
-
-function Section({
-  id,
-  title,
-  children,
-}: {
-  id?: string;
-  title: string;
-  children: ReactNode;
-}) {
-  return (
-    <section id={id} className="mx-auto max-w-6xl px-4 py-14">
-      <motion.h2
-        initial={{ opacity: 0, y: 8 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.35 }}
-        className="text-xl md:text-2xl font-semibold"
-      >
-        {title}
-      </motion.h2>
-      <div className="mt-6">{children}</div>
-    </section>
-  );
-}
-
-function Card({ children }: { children: ReactNode }) {
-  return (
-    <div className="rounded-2xl border border-neutral-200 p-5 bg-white">
-      {children}
     </div>
   );
 }
