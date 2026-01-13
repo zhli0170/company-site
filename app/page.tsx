@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useMemo, useRef, useState } from 'react';
+import { members } from './members-data'; // 放在 app/ 同级，路径按你存放的位置修改
 
 /**
  * Next.js app/page.tsx
@@ -18,11 +19,7 @@ export default function Page() {
   // 简单轮播（横幅）
   const heroRef = useRef<HTMLDivElement | null>(null);
   const heroSlides = useMemo(
-    () => [
-      { alt: 'BANNER 1' },
-      { alt: 'BANNER 2' },
-      { alt: 'BANNER 3' },
-    ],
+    () => [{ alt: 'BANNER 1' }, { alt: 'BANNER 2' }, { alt: 'BANNER 3' }],
     []
   );
 
@@ -49,7 +46,10 @@ export default function Page() {
       </svg>`
     )}`;
 
-  const scrollByWidth = (ref: React.RefObject<HTMLDivElement | null>, direction: 1 | -1) => {
+  const scrollByWidth = (
+    ref: React.RefObject<HTMLDivElement | null>,
+    direction: 1 | -1
+  ) => {
     const el = ref.current;
     if (!el) return;
     const dx = el.clientWidth * direction;
@@ -64,27 +64,43 @@ export default function Page() {
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <a href="/" className="flex items-center gap-3">
-              <img
-                src={ph(220, 60, '[LOGO]')}
-                alt="LOGO"
-                className="h-8 w-auto"
-              />
+              <img src={ph(220, 60, '[LOGO]')} alt="LOGO" className="h-8 w-auto" />
               <span className="sr-only">Home</span>
             </a>
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-6 text-sm">
-              <a href="/index.html?lang=en-us" className="hover:opacity-80">HOME</a>
+              <a href="/index.html?lang=en-us" className="hover:opacity-80">
+                HOME
+              </a>
 
               <div className="group relative">
-                <a href="/research/index/cid/133.html?lang=en-us&nvid=8" className="hover:opacity-80">
+                <a
+                  href="/research/index/cid/133.html?lang=en-us&nvid=8"
+                  className="hover:opacity-80"
+                >
                   RESEARCH
                 </a>
                 {/* 下拉（占位，无内容） */}
                 <div className="absolute left-0 top-full hidden min-w-[220px] rounded-xl border border-neutral-200 bg-white p-2 shadow-md group-hover:block">
-                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/research/index/cid/166.html?lang=en-us&nvid=23">[Subcat A]</a>
-                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/research/index/cid/133.html?lang=en-us&nvid=8">[Subcat B]</a>
-                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/research/index/cid/134.html?lang=en-us&nvid=9">[Subcat C]</a>
+                  <a
+                    className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                    href="/research/index/cid/166.html?lang=en-us&nvid=23"
+                  >
+                    [Subcat A]
+                  </a>
+                  <a
+                    className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                    href="/research/index/cid/133.html?lang=en-us&nvid=8"
+                  >
+                    [Subcat B]
+                  </a>
+                  <a
+                    className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                    href="/research/index/cid/134.html?lang=en-us&nvid=9"
+                  >
+                    [Subcat C]
+                  </a>
                 </div>
               </div>
 
@@ -93,8 +109,18 @@ export default function Page() {
                   PUBLICATIONS
                 </a>
                 <div className="absolute left-0 top-full hidden min-w-[220px] rounded-xl border border-neutral-200 bg-white p-2 shadow-md group-hover:block">
-                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/publication/index/cid/136.html?lang=en-us&nvid=11">[Selected]</a>
-                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/publication/lists/cid/137.html?lang=en-us&nvid=12">[All]</a>
+                  <a
+                    className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                    href="/publication/index/cid/136.html?lang=en-us&nvid=11"
+                  >
+                    [Selected]
+                  </a>
+                  <a
+                    className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                    href="/publication/lists/cid/137.html?lang=en-us&nvid=12"
+                  >
+                    [All]
+                  </a>
                 </div>
               </div>
 
@@ -103,20 +129,39 @@ export default function Page() {
                   MEMBERS
                 </a>
                 <div className="absolute left-0 top-full hidden min-w-[220px] rounded-xl border border-neutral-200 bg-white p-2 shadow-md group-hover:block">
-                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/faculty/index/cid/139.html?lang=en-us&nvid=13">[PI]</a>
-                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/faculty/index/cid/143.html?lang=en-us&nvid=22">[Current]</a>
-                  <a className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50" href="/faculty/index/cid/140.html?lang=en-us&nvid=14">[Alumni]</a>
+                  <a
+                    className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                    href="/faculty/index/cid/139.html?lang=en-us&nvid=13"
+                  >
+                    [PI]
+                  </a>
+                  <a
+                    className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                    href="/faculty/index/cid/143.html?lang=en-us&nvid=22"
+                  >
+                    [Current]
+                  </a>
+                  <a
+                    className="block rounded-lg px-3 py-2 text-sm hover:bg-neutral-50"
+                    href="/faculty/index/cid/140.html?lang=en-us&nvid=14"
+                  >
+                    [Alumni]
+                  </a>
                 </div>
               </div>
 
-              <a href="/news.html?lang=en-us" className="hover:opacity-80">NEWS</a>
-              <a href="/contact.html?lang=en-us" className="hover:opacity-80">CONTACT</a>
+              <a href="/news.html?lang=en-us" className="hover:opacity-80">
+                NEWS
+              </a>
+              <a href="/contact.html?lang=en-us" className="hover:opacity-80">
+                CONTACT
+              </a>
             </nav>
 
             {/* Mobile Menu Button */}
             <button
               className="md:hidden inline-flex items-center rounded-lg border px-3 py-1.5 text-sm"
-              onClick={() => setMenuOpen(v => !v)}
+              onClick={() => setMenuOpen((v) => !v)}
               aria-label="Toggle menu"
             >
               {menuOpen ? 'CLOSE' : 'MENU'}
@@ -128,12 +173,27 @@ export default function Page() {
         {menuOpen && (
           <div className="md:hidden border-t border-neutral-200">
             <div className="mx-auto max-w-6xl px-4 py-3 space-y-2 text-sm">
-              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/index.html?lang=en-us">HOME</a>
-              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/research/index/cid/133.html?lang=en-us&nvid=8">RESEARCH</a>
-              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/publication.html?lang=en-us">PUBLICATIONS</a>
-              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/faculty.html?lang=en-us">MEMBERS</a>
-              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/news.html?lang=en-us">NEWS</a>
-              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/contact.html?lang=en-us">CONTACT</a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/index.html?lang=en-us">
+                HOME
+              </a>
+              <a
+                className="block rounded-lg px-3 py-2 hover:bg-neutral-50"
+                href="/research/index/cid/133.html?lang=en-us&nvid=8"
+              >
+                RESEARCH
+              </a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/publication.html?lang=en-us">
+                PUBLICATIONS
+              </a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/faculty.html?lang=en-us">
+                MEMBERS
+              </a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/news.html?lang=en-us">
+                NEWS
+              </a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="/contact.html?lang=en-us">
+                CONTACT
+              </a>
             </div>
           </div>
         )}
@@ -188,9 +248,7 @@ export default function Page() {
           <h2 className="text-2xl font-semibold">Research Highlight</h2>
           <div className="mt-6 grid md:grid-cols-2 gap-8">
             <div>
-              <p className="text-neutral-600">
-                [Brief highlight / Empty placeholder text]
-              </p>
+              <p className="text-neutral-600">[Brief highlight / Empty placeholder text]</p>
               <div className="mt-4">
                 <a href="##" className="inline-flex items-center rounded-xl border px-3 py-1.5 text-sm">
                   READ MORE
@@ -199,7 +257,7 @@ export default function Page() {
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
-              {[1, 2, 3, 4].map(i => (
+              {[1, 2, 3, 4].map((i) => (
                 <figure key={i} className="rounded-xl border p-3">
                   <img
                     src={ph(560, 360, '[IMAGE]')}
@@ -228,7 +286,9 @@ export default function Page() {
                   <h3 className="mt-3 font-medium">{t}</h3>
                   <p className="mt-1 text-sm text-neutral-600">[Short description]</p>
                   <div className="mt-3">
-                    <a href="##" className="text-sm underline underline-offset-4">READ MORE</a>
+                    <a href="##" className="text-sm underline underline-offset-4">
+                      READ MORE
+                    </a>
                   </div>
                 </article>
               ))}
@@ -243,7 +303,7 @@ export default function Page() {
             <div>
               <h2 className="text-2xl font-semibold">Selected PUBLICATIONS</h2>
               <ul className="mt-6 space-y-4">
-                {[1, 2].map(i => (
+                {[1, 2].map((i) => (
                   <li key={i} className="flex gap-4 rounded-2xl border p-4">
                     <img
                       src={ph(160, 120, '[IMG]')}
@@ -270,13 +330,32 @@ export default function Page() {
             <div>
               <h2 className="text-2xl font-semibold">ALL PUBLICATIONS</h2>
               <div className="mt-4 flex flex-wrap gap-2 text-sm">
-                {['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', 'Before 2010'].map(y => (
-                  <span key={y} className="rounded-lg border px-3 py-1">{y}</span>
+                {[
+                  '2025',
+                  '2024',
+                  '2023',
+                  '2022',
+                  '2021',
+                  '2020',
+                  '2019',
+                  '2018',
+                  '2017',
+                  '2016',
+                  '2015',
+                  '2014',
+                  '2013',
+                  '2012',
+                  '2011',
+                  'Before 2010',
+                ].map((y) => (
+                  <span key={y} className="rounded-lg border px-3 py-1">
+                    {y}
+                  </span>
                 ))}
               </div>
 
               <div className="mt-6 space-y-4">
-                {[1, 2].map(i => (
+                {[1, 2].map((i) => (
                   <div key={i} className="rounded-2xl border p-4">
                     <h4 className="text-sm font-medium">
                       <a href="##">[Paper title - placeholder]</a>
@@ -297,59 +376,46 @@ export default function Page() {
           </div>
         </section>
 
-        {/* Members */}
-        <section className="bg-neutral-50 border-y border-neutral-200">
+        {/* Members（来自 members-data.ts，一人一张卡，完整简介） */}
+        <section className="bg-neutral-50 border-y border-neutral-200" id="members">
           <div className="mx-auto max-w-6xl px-4 py-10">
             <h2 className="text-2xl font-semibold">MEMBERS</h2>
-            <div className="mt-6 grid lg:grid-cols-2 gap-8">
-              <div>
-                <h3 className="text-lg font-medium">[Group one-line intro]</h3>
 
-                <div className="mt-4 rounded-2xl border bg-white p-5">
-                  <div className="flex items-center gap-4">
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {members.map((m) => (
+                <article key={m.slug} className="rounded-2xl border bg-white p-5">
+                  <div className="flex items-start gap-4">
                     <img
-                      src={ph(220, 220, '[IMG]')}
-                      alt="PI"
-                      className="h-24 w-24 rounded-xl object-cover"
+                      src={m.avatar || ph(160, 160, '[IMG]')}
+                      alt={m.name}
+                      className="h-20 w-20 rounded-xl object-cover"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src = ph(160, 160, '[IMG]');
+                      }}
                     />
-                    <div>
-                      <div className="font-medium">[PI Name]</div>
-                      <p className="text-sm text-neutral-600">[PI role/affiliation brief]</p>
+                    <div className="min-w-0">
+                      <h3 className="font-semibold">{m.name}</h3>
+                      {m.title && <p className="text-sm text-neutral-600">{m.title}</p>}
+                      {m.email && m.email.length > 0 && (
+                        <div className="mt-1 text-xs text-neutral-500 space-x-2">
+                          {m.email.map((em) => (
+                            <a
+                              key={em}
+                              href={`mailto:${em}`}
+                              className="underline underline-offset-2"
+                            >
+                              {em}
+                            </a>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
 
-                  <ul className="mt-4 space-y-2 text-sm">
-                    <li><span className="font-medium">[Year]</span> — [Award / Highlight]</li>
-                    <li><span className="font-medium">[Year]</span> — [Award / Highlight]</li>
-                    <li><span className="font-medium">[Year]</span> — [Award / Highlight]</li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                <div className="rounded-2xl border bg-white p-5">
-                  <h4 className="font-medium">[About the lab]</h4>
-                  <p className="mt-2 text-sm text-neutral-600">[Empty placeholder text]</p>
-                  <hr className="my-4" />
-                  <p className="text-sm text-neutral-600">[Timeline / biography placeholder]</p>
-                </div>
-
-                <div className="rounded-2xl border bg-white p-5">
-                  <div className="grid grid-cols-3 gap-3">
-                    {['Principal Investigator', 'Current', 'Alumni'].map((k, i) => (
-                      <a key={i} href="##" className="rounded-xl border p-3 text-center text-sm hover:bg-neutral-50">
-                        <img
-                          src={ph(160, 120, '[IMG]')}
-                          alt={k}
-                          className="mx-auto h-20 w-auto rounded-md object-cover"
-                        />
-                        <p className="mt-2">{k}</p>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
+                  {/* 完整简介：保留换行，无省略号 */}
+                  <div className="mt-4 whitespace-pre-line text-sm text-neutral-700">{m.bio}</div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -414,11 +480,7 @@ export default function Page() {
         <div className="mx-auto max-w-6xl px-4 py-10">
           <div className="grid md:grid-cols-[220px,1fr] gap-8">
             <a href="/" className="block">
-              <img
-                src={ph(220, 60, '[LOGO]')}
-                alt="FOOTER LOGO"
-                className="h-10 w-auto"
-              />
+              <img src={ph(220, 60, '[LOGO]')} alt="FOOTER LOGO" className="h-10 w-auto" />
             </a>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -435,18 +497,32 @@ export default function Page() {
               <div>
                 <div className="text-sm font-semibold">Links</div>
                 <ul className="mt-2 space-y-2 text-sm">
-                  <li><a href="##" target="_blank" className="hover:underline">[Link A]</a></li>
-                  <li><a href="##" target="_blank" className="hover:underline">[Link B]</a></li>
-                  <li><a href="##" target="_blank" className="hover:underline">[Link C]</a></li>
-                  <li><a href="##" target="_blank" className="hover:underline">[Link D]</a></li>
+                  <li>
+                    <a href="##" target="_blank" className="hover:underline">
+                      [Link A]
+                    </a>
+                  </li>
+                  <li>
+                    <a href="##" target="_blank" className="hover:underline">
+                      [Link B]
+                    </a>
+                  </li>
+                  <li>
+                    <a href="##" target="_blank" className="hover:underline">
+                      [Link C]
+                    </a>
+                  </li>
+                  <li>
+                    <a href="##" target="_blank" className="hover:underline">
+                      [Link D]
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
           </div>
 
-          <div className="mt-8 text-xs text-neutral-500">
-            [Copyright / placeholder]
-          </div>
+          <div className="mt-8 text-xs text-neutral-500">[Copyright / placeholder]</div>
         </div>
       </footer>
     </div>
