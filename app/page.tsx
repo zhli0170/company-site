@@ -36,9 +36,9 @@ export default function Page() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-neutral-900">
+    <div className="min-h-screen bg-blue-50 text-gray-900">
       {/* Header */}
-      <header className="border-b border-neutral-200">
+      <header className="border-b border-blue-200 bg-white">
         <div className="mx-auto max-w-6xl px-4">
           <div className="flex h-16 items-center justify-between">
             <a href="/" className="flex items-center gap-3">
@@ -51,16 +51,16 @@ export default function Page() {
             </a>
 
             <nav className="hidden md:flex items-center gap-6 text-sm">
-              <a href="#home" className="hover:opacity-80">HOME</a>
-              <a href="#research" className="hover:opacity-80">RESEARCH</a>
-              <a href="#publications" className="hover:opacity-80">PUBLICATIONS</a>
-              <a href="#members" className="hover:opacity-80">MEMBERS</a>
-              <a href="#news" className="hover:opacity-80">NEWS</a>
-              <a href="#contact" className="hover:opacity-80">CONTACT</a>
+              <a href="#home" className="text-gray-600 hover:text-blue-600 font-medium">HOME</a>
+              <a href="#research" className="text-gray-600 hover:text-blue-600 font-medium">RESEARCH</a>
+              <a href="#publications" className="text-gray-600 hover:text-blue-600 font-medium">PUBLICATIONS</a>
+              <a href="#members" className="text-gray-600 hover:text-blue-600 font-medium">MEMBERS</a>
+              <a href="#news" className="text-gray-600 hover:text-blue-600 font-medium">NEWS</a>
+              <a href="#contact" className="text-gray-600 hover:text-blue-600 font-medium">CONTACT</a>
             </nav>
 
             <button
-              className="md:hidden inline-flex items-center rounded-lg border px-3 py-1.5 text-sm"
+              className="md:hidden inline-flex items-center rounded-lg border border-blue-300 px-3 py-1.5 text-sm hover:bg-blue-50"
               onClick={() => setMenuOpen(v => !v)}
               aria-label="Toggle menu"
             >
@@ -70,26 +70,26 @@ export default function Page() {
         </div>
 
         {menuOpen && (
-          <div className="md:hidden border-t border-neutral-200">
+          <div className="md:hidden border-t border-blue-200">
             <div className="mx-auto max-w-6xl px-4 py-3 space-y-2 text-sm">
-              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="#home">HOME</a>
-              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="#research">RESEARCH</a>
-              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="#publications">PUBLICATIONS</a>
-              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="#members">MEMBERS</a>
-              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="#news">NEWS</a>
-              <a className="block rounded-lg px-3 py-2 hover:bg-neutral-50" href="#contact">CONTACT</a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-blue-100 text-gray-700" href="#home">HOME</a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-blue-100 text-gray-700" href="#research">RESEARCH</a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-blue-100 text-gray-700" href="#publications">PUBLICATIONS</a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-blue-100 text-gray-700" href="#members">MEMBERS</a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-blue-100 text-gray-700" href="#news">NEWS</a>
+              <a className="block rounded-lg px-3 py-2 hover:bg-blue-100 text-gray-700" href="#contact">CONTACT</a>
             </div>
           </div>
         )}
       </header>
 
       {/* Hero */}
-      <section id="home" className="border-b border-neutral-200">
+      <section id="home" className="border-b border-blue-200">
         <div className="mx-auto max-w-6xl px-4 py-6">
           <div className="relative">
             <div
               ref={heroRef}
-              className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth rounded-2xl border border-neutral-200"
+              className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth rounded-2xl border border-blue-200"
             >
               {[1, 2, 3].map(i => (
                 <div key={i} className="min-w-full snap-start">
@@ -105,7 +105,7 @@ export default function Page() {
               <div className="pointer-events-auto p-2">
                 <button
                   onClick={() => scrollByWidth(heroRef, -1)}
-                  className="rounded-full border bg-white/80 px-3 py-2 text-xs shadow"
+                  className="rounded-full border border-blue-300 bg-blue-500 text-white px-3 py-2 text-xs shadow hover:bg-blue-600"
                 >
                   Prev
                 </button>
@@ -113,33 +113,33 @@ export default function Page() {
               <div className="pointer-events-auto p-2">
                 <button
                   onClick={() => scrollByWidth(heroRef, 1)}
-                  className="rounded-full border bg-white/80 px-3 py-2 text-xs shadow"
+                  className="rounded-full border border-blue-300 bg-blue-500 text-white px-3 py-2 text-xs shadow hover:bg-blue-600"
                 >
                   Next
                 </button>
               </div>
             </div>
-            <div className="mt-2 text-right text-xs text-neutral-500">01/03</div>
+            <div className="mt-2 text-right text-xs text-blue-500">01/03</div>
           </div>
         </div>
       </section>
 
       {/* Research */}
-      <section id="research" className="bg-neutral-50 border-y border-neutral-200">
+      <section id="research" className="bg-blue-50 border-y border-blue-200">
         <div className="mx-auto max-w-6xl px-4 py-10">
-          <h2 className="text-2xl font-semibold">Research</h2>
+          <h2 className="text-2xl font-semibold text-gray-800">Research</h2>
           <div className="mt-6 grid md:grid-cols-3 gap-4">
             {['[Topic A]', '[Topic B]', '[Topic C]'].map((t, i) => (
-              <article key={i} className="rounded-2xl border bg-white p-5">
+              <article key={i} className="rounded-2xl border border-blue-200 bg-white p-5 hover:border-blue-400 hover:shadow-md transition">
                 <img
                   src={ph(360, 220, '[IMAGE]')}
                   alt={`Research ${i + 1}`}
                   className="w-full h-40 object-cover rounded-xl"
                 />
-                <h3 className="mt-3 font-medium">{t}</h3>
-                <p className="mt-1 text-sm text-neutral-600">[Short description]</p>
+                <h3 className="mt-3 font-medium text-gray-700">{t}</h3>
+                <p className="mt-1 text-sm text-gray-600">[Short description]</p>
                 <div className="mt-3">
-                  <a href="#research" className="text-sm underline underline-offset-4">READ MORE</a>
+                  <a href="#research" className="text-sm text-blue-600 hover:text-blue-700 underline underline-offset-4">READ MORE</a>
                 </div>
               </article>
             ))}
@@ -151,10 +151,10 @@ export default function Page() {
       <section id="publications" className="mx-auto max-w-6xl px-4 py-10">
         <div className="grid lg:grid-cols-2 gap-8">
           <div>
-            <h2 className="text-2xl font-semibold">Selected PUBLICATIONS</h2>
+            <h2 className="text-2xl font-semibold text-gray-800">Selected PUBLICATIONS</h2>
             <ul className="mt-6 space-y-4">
               {[1, 2].map(i => (
-                <li key={i} className="flex gap-4 rounded-2xl border p-4">
+                <li key={i} className="flex gap-4 rounded-2xl border border-blue-200 p-4 hover:border-blue-400 hover:shadow-md transition">
                   <img
                     src={ph(160, 120, '[IMG]')}
                     alt="thumb"
@@ -162,40 +162,40 @@ export default function Page() {
                   />
                   <div className="min-w-0">
                     <h4 className="text-sm font-medium">
-                      <a href="#publications">[Paper title]</a>
+                      <a href="#publications" className="text-blue-600 hover:text-blue-700">[Paper title]</a>
                     </h4>
-                    <p className="mt-1 text-sm text-neutral-600">[Authors]. [Journal]. [Year].</p>
+                    <p className="mt-1 text-sm text-gray-600">[Authors]. [Journal]. [Year].</p>
                   </div>
                 </li>
               ))}
             </ul>
             <div className="mt-4">
-              <a href="#publications" className="inline-flex items-center rounded-xl border px-3 py-1.5 text-sm">
+              <a href="#publications" className="inline-flex items-center rounded-xl border border-blue-300 bg-blue-500 text-white px-3 py-1.5 text-sm hover:bg-blue-600 transition">
                 READ MORE
               </a>
             </div>
           </div>
 
           <div>
-            <h2 className="text-2xl font-semibold">ALL PUBLICATIONS</h2>
+            <h2 className="text-2xl font-semibold text-gray-800">ALL PUBLICATIONS</h2>
             <div className="mt-4 flex flex-wrap gap-2 text-sm">
               {['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', 'Before 2010']
-                .map(y => (<span key={y} className="rounded-lg border px-3 py-1">{y}</span>))}
+                .map(y => (<span key={y} className="rounded-lg border border-blue-200 bg-white text-gray-700 px-3 py-1 hover:border-blue-400 cursor-pointer">{y}</span>))}
             </div>
             <div className="mt-6 space-y-4">
               {[1, 2].map(i => (
-                <div key={i} className="rounded-2xl border p-4">
+                <div key={i} className="rounded-2xl border border-blue-200 p-4 hover:border-blue-400 hover:shadow-md transition">
                   <h4 className="text-sm font-medium">
-                    <a href="#publications">[Paper title - placeholder]</a>
+                    <a href="#publications" className="text-blue-600 hover:text-blue-700">[Paper title - placeholder]</a>
                   </h4>
-                  <p className="mt-1 text-sm text-neutral-600">
+                  <p className="mt-1 text-sm text-gray-600">
                     [Authors]. [Journal], [Volume(Issue)], pages, [Year].
                   </p>
                 </div>
               ))}
             </div>
             <div className="mt-4">
-              <a href="#publications" className="inline-flex items-center rounded-xl border px-3 py-1.5 text-sm">
+              <a href="#publications" className="inline-flex items-center rounded-xl border border-blue-300 bg-blue-500 text-white px-3 py-1.5 text-sm hover:bg-blue-600 transition">
                 READ MORE
               </a>
             </div>
@@ -204,9 +204,9 @@ export default function Page() {
       </section>
 
       {/* MEMBERS */}
-      <section id="members" className="bg-neutral-50 border-y border-neutral-200">
+      <section id="members" className="bg-blue-50 border-y border-blue-200">
         <div className="mx-auto max-w-6xl px-4 py-10">
-          <h2 className="text-2xl font-semibold">MEMBERS</h2>
+          <h2 className="text-2xl font-semibold text-gray-800">MEMBERS</h2>
 
           {/* 顶部网格：快速跳转到个人详情 */}
           <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -214,7 +214,7 @@ export default function Page() {
               <a
                 key={m.slug}
                 href={`#member-${m.slug}`}
-                className="group rounded-xl border bg-white p-3 hover:bg-neutral-50"
+                className="group rounded-xl border border-blue-200 bg-white p-3 hover:bg-blue-50 hover:border-blue-400 hover:shadow-md transition"
               >
                 <img
                   src={m.avatar ? `/members/${m.avatar}` : ph(200, 200, 'photo')}
@@ -222,8 +222,8 @@ export default function Page() {
                   alt={m.name}
                   className="h-28 w-full rounded-lg object-cover"
                 />
-                <div className="mt-2 text-sm font-medium truncate">{m.name}</div>
-                {m.title && <div className="text-xs text-neutral-500 truncate">{m.title}</div>}
+                <div className="mt-2 text-sm font-medium truncate text-gray-800">{m.name}</div>
+                {m.title && <div className="text-xs text-blue-600 truncate">{m.title}</div>}
               </a>
             ))}
           </div>
@@ -234,7 +234,7 @@ export default function Page() {
               <article
                 key={m.slug}
                 id={`member-${m.slug}`}
-                className="rounded-2xl border bg-white p-5 scroll-mt-24"
+                className="rounded-2xl border border-blue-200 bg-white p-5 scroll-mt-24 hover:border-blue-400 hover:shadow-md transition"
               >
                 <div className="flex gap-4">
                   <img
@@ -244,16 +244,16 @@ export default function Page() {
                     className="h-28 w-28 flex-none rounded-xl object-cover"
                   />
                   <div className="min-w-0">
-                    <h3 className="text-lg font-semibold">{m.name}</h3>
-                    {m.title && <p className="text-sm text-neutral-600">{m.title}</p>}
+                    <h3 className="text-lg font-semibold text-gray-800">{m.name}</h3>
+                    {m.title && <p className="text-sm text-blue-600">{m.title}</p>}
                     {m.email && (
                       <p className="text-sm mt-1">
-                        <a className="underline underline-offset-4" href={`mailto:${m.email}`}>{m.email}</a>
+                        <a className="text-blue-600 hover:text-blue-700 underline underline-offset-4" href={`mailto:${m.email}`}>{m.email}</a>
                       </p>
                     )}
 
                     {m.bio && (
-                      <div className="mt-4 whitespace-pre-line text-sm text-neutral-700 break-words [overflow-wrap:anywhere]">
+                      <div className="mt-4 whitespace-pre-line text-sm text-gray-700 break-words [overflow-wrap:anywhere]">
                         {m.bio}
                       </div>
                     )}
@@ -267,18 +267,18 @@ export default function Page() {
 
       {/* News */}
       <section id="news" className="mx-auto max-w-6xl px-4 py-10">
-        <h2 className="text-2xl font-semibold">NEWS</h2>
+        <h2 className="text-2xl font-semibold text-gray-800">NEWS</h2>
         <div className="mt-6 relative">
           <div
             ref={newsRef}
             className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth"
           >
             {[1, 2, 3, 4].map(i => (
-              <a key={i} href="#news" className="min-w-[280px] snap-start rounded-2xl border p-4 hover:bg-neutral-50">
-                <div className="text-xs text-neutral-500">YYYY-MM-DD</div>
-                <p className="mt-2 text-sm">[News headline placeholder]</p>
+              <a key={i} href="#news" className="min-w-[280px] snap-start rounded-2xl border border-blue-200 p-4 hover:bg-blue-50 hover:border-blue-400 hover:shadow-md transition bg-white">
+                <div className="text-xs text-blue-500 font-medium">YYYY-MM-DD</div>
+                <p className="mt-2 text-sm text-gray-700">[News headline placeholder]</p>
                 <div className="mt-3">
-                  <span className="inline-flex items-center rounded-xl border px-2 py-1 text-xs">
+                  <span className="inline-flex items-center rounded-xl border border-blue-300 bg-blue-500 text-white px-2 py-1 text-xs">
                     READ MORE
                   </span>
                 </div>
@@ -297,7 +297,7 @@ export default function Page() {
             <div className="pointer-events-auto p-2">
               <button
                 onClick={() => scrollByWidth(newsRef, -1)}
-                className="rounded-full border bg-white/80 px-3 py-2 text-xs shadow"
+                className="rounded-full border border-blue-300 bg-blue-500 text-white px-3 py-2 text-xs shadow hover:bg-blue-600"
               >
                 Prev
               </button>
@@ -305,7 +305,7 @@ export default function Page() {
             <div className="pointer-events-auto p-2">
               <button
                 onClick={() => scrollByWidth(newsRef, 1)}
-                className="rounded-full border bg-white/80 px-3 py-2 text-xs shadow"
+                className="rounded-full border border-blue-300 bg-blue-500 text-white px-3 py-2 text-xs shadow hover:bg-blue-600"
               >
                 Next
               </button>
@@ -315,7 +315,7 @@ export default function Page() {
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="border-t border-neutral-200">
+      <footer id="contact" className="border-t border-blue-200 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-10">
           <div className="grid md:grid-cols-[220px,1fr] gap-8">
             <a href="/" className="block">
@@ -328,28 +328,28 @@ export default function Page() {
 
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <div className="text-sm font-semibold">Get in Touch</div>
-                <p className="mt-2 text-sm text-neutral-600">[Address / placeholder]</p>
+                <div className="text-sm font-semibold text-gray-800">Get in Touch</div>
+                <p className="mt-2 text-sm text-gray-600">[Address / placeholder]</p>
                 <div className="mt-3">
-                  <a href="mailto:" className="inline-flex items-center rounded-xl border px-3 py-1.5 text-sm">
+                  <a href="mailto:" className="inline-flex items-center rounded-xl border border-blue-300 bg-blue-500 text-white px-3 py-1.5 text-sm hover:bg-blue-600 transition">
                     Email address
                   </a>
                 </div>
               </div>
 
               <div>
-                <div className="text-sm font-semibold">Links</div>
+                <div className="text-sm font-semibold text-gray-800">Links</div>
                 <ul className="mt-2 space-y-2 text-sm">
-                  <li><a href="#" className="hover:underline">[Link A]</a></li>
-                  <li><a href="#" className="hover:underline">[Link B]</a></li>
-                  <li><a href="#" className="hover:underline">[Link C]</a></li>
-                  <li><a href="#" className="hover:underline">[Link D]</a></li>
+                  <li><a href="#" className="text-blue-600 hover:text-blue-700">[Link A]</a></li>
+                  <li><a href="#" className="text-blue-600 hover:text-blue-700">[Link B]</a></li>
+                  <li><a href="#" className="text-blue-600 hover:text-blue-700">[Link C]</a></li>
+                  <li><a href="#" className="text-blue-600 hover:text-blue-700">[Link D]</a></li>
                 </ul>
               </div>
             </div>
           </div>
 
-          <div className="mt-8 text-xs text-neutral-500">
+          <div className="mt-8 text-xs text-gray-500">
             [Copyright / placeholder]
           </div>
         </div>
