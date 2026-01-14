@@ -10,6 +10,14 @@ export type Member = {
 
 export const members: Member[] = [
   {
+    name: "Sarina Sarina",
+    title: "Professor",
+    slug: "sarina-sarina",
+    email: [],
+    avatar: "/members/sarina-sarina.jpg",
+    bio: `Professor Sarina Sarina is the head of the research group at the University of Sydney. Her research interests include catalysis, materials science, and photochemistry.`
+  },
+  {
     name: "Bio - Dr Chung Nguyen",
     title: "Lab Member",
     slug: "bio-dr-chung-nguyen",
