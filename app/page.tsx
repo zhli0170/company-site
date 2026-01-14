@@ -6,11 +6,9 @@ import { members, type Member } from './members-data';
 export default function Page() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // 轮播占位（可按需删减）
   const heroRef = useRef<HTMLDivElement | null>(null);
   const newsRef = useRef<HTMLDivElement | null>(null);
 
-  // 简单占位图
   const ph = (w: number, h: number, label: string) =>
     `data:image/svg+xml;utf8,${encodeURIComponent(
       `<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}'>
@@ -28,7 +26,6 @@ export default function Page() {
     el.scrollBy({ left: el.clientWidth * dir, behavior: 'smooth' });
   };
 
-  // 支持 URL 带 #member-xxx 直接滚动
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const hash = window.location.hash;
@@ -255,7 +252,6 @@ export default function Page() {
                       </p>
                     )}
 
-                    {/* ✅ 完整简介：保留换行、无省略号 */}
                     {m.bio && (
                       <div className="mt-4 whitespace-pre-line text-sm text-neutral-700 break-words [overflow-wrap:anywhere]">
                         {m.bio}
