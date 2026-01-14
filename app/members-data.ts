@@ -14,7 +14,7 @@ export const members: Member[] = [
     title: "Lab Member",
     slug: "bio-dr-chung-nguyen",
     email: [],
-    avatar: "/members/bio-dr-chung-nguyen.jpg",
+    avatar: "/members/dr-chung-nguyen.jpeg",
     bio: `Bio: Dr Chung Nguyen
 Dr Chung Nguyen is currently a Postdoctoral Researcher in the School of Chemical and Biomolecular Engineering, Faculty of Engineering, at the University of Sydney. He received his PhD in Chemical Engineering in 2023 from RMIT University (Australia), where he conducted pioneering research on the development of atomically thin materials for optoelectronics and gas sensing. Prior to his PhD, he held a research position at Ho Chi Minh City University of Technology, Vietnam, focusing on catalysis and materials science.
 Dr Nguyen is currently developing new catalytic systems for photoreactions, with a focus on harnessing light-driven processes for sustainable chemical synthesis. His broader research interests include functional materials for energy, sensing, antimicrobial, and catalysis.
@@ -31,7 +31,7 @@ Liquid Metal Printed Zinc Tin Composite Oxide Nanosheets: A Platform for Multifu
     title: "Lab Member",
     slug: "han-huang",
     email: [],
-    avatar: "/members/han-huang.jpg",
+    avatar: "/members/han-huang.jpeg",
     bio: `Han HUANG
 2025.10-present, Ph.D., The University of Sydney, Australia
 2022.9-2025.6, MPhil, South-Central Minzu University, China
@@ -45,7 +45,7 @@ Research Interest
     title: "Lab Member",
     slug: "namuersaihan-namuersaihan",
     email: [],
-    avatar: "/members/namuersaihan-namuersaihan.jpg",
+    avatar: "/members/namuersaihan-namuersaihan.jpeg",
     bio: `Thanks for your mail. Here attached my details and also my photo: ​​
 Namuersaihan Namuersaihan
 Background:
@@ -61,7 +61,7 @@ First-principles DFT, molecular dynamics, and machine-learning interatomic poten
     title: "Lab Member",
     slug: "xing-li",
     email: [],
-    avatar: "/members/xing-li.jpg",
+    avatar: "/members/xing-li.jpeg",
     bio: `This is my information and photo. Ended up using the pic you took for me, hahaha!
 "2025- Present  The University of Sydney, Ph.D. candidate
 2020-2023 China Pharmaceutical University, Master degree
@@ -73,7 +73,7 @@ Thank you very much.`
     title: "Lab Member",
     slug: "yujian-shi",
     email: [],
-    avatar: "/members/yujian-shi.jpg",
+    avatar: "/members/yujian-shi.jpeg",
     bio: `I have attached my research background:
 2023 – Present             Ph.D. candidate, The University of Sydney, Australia
 2021 – 2023                  Ph.D. candidate, Queensland University of Technology, Australia
@@ -88,7 +88,7 @@ Photocatalytic styrene polymerisation with liquid metal films`
     title: "Lab Member",
     slug: "zilong-introduction",
     email: [],
-    avatar: "/members/zilong-introduction.jpg",
+    avatar: "/members/zilong-introduction.jpeg",
     bio: `Zilong Wang
 2024.03 ~ Present: Ph.D. Candidate, The University of Sydney (USYD), Sydney, Australia
 2019.09 ~ 2022.06: Master of Engineering, Beijing University of Chemical Technology (BUCT), Beijing, China
@@ -103,7 +103,7 @@ Research Interest
     title: "Lab Member",
     slug: "ziqi-zhou",
     email: [],
-    avatar: "/members/ziqi-zhou.jpg",
+    avatar: "/members/ziqi-zhou.jpeg",
     bio: `Sorry for late. Please see below the details of me.
 2023-2026 Ph.D. candidate, The University of Sydney, Australia
 2021-2023 Queensland University of Technology, Australia, Master of Philosophy
@@ -115,7 +115,7 @@ Research Interest
     title: "Lab Member",
     slug: "yuning-chen",
     email: [],
-    avatar: "/members/yuning-chen.jpg",
+    avatar: "/members/yuning-chen.jpeg",
     bio: `Yuning Chen
 2024.3-present, Ph.D. candidate, University of Sydney
 2020.9-2023.6, Master of Environmental Engineering, Lanzhou University
