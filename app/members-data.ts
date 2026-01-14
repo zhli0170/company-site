@@ -11,11 +11,11 @@ export type Member = {
 export const members: Member[] = [
   {
     name: "Sarina Sarina",
-    title: "Professor",
+    title: "Associate Professor, School of Chemical and Biomolecular Engineering",
     slug: "sarina-sarina",
-    email: [],
+    email: ["sarina.sarina@sydney.edu.au"],
     avatar: "sarina-sarina.jpeg",
-    bio: `Professor Sarina Sarina is the head of the research group at the University of Sydney. Her research interests include catalysis, materials science, and photochemistry.`
+    bio: `Dr Sarina is currently an Associate Professor and ARC Future Fellow (2023-2027) in the School of Chemical and Biomolecular Engineering, Faculty of Engineering. Sarina received her PhD in 2013 from Queensland University of Technology with the "Outstanding Doctoral Thesis Award" and was awarded the Alexander von Humboldt Research Fellowship (2014) at the Max Planck Institute of Colloid and Interfaces (Potsdam, Germany). She returned to QUT as a Postdoctoral Research Fellow in 2016, to continue her research specialty in selective synthesis by plasmonic photocatalysis and awarded ARC DECRA Fellowship (2019-2022). Sarina's research is focusing on metal nanoparticle based catalysis for controllable organic synthesis, covering thermal- and photocatalysis for low-carbon chemical synthesis.`
   },
   {
     name: "Bio - Dr Chung Nguyen",
