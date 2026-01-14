@@ -14,7 +14,7 @@ export const members: Member[] = [
     title: "Professor",
     slug: "sarina-sarina",
     email: [],
-    avatar: "/members/sarina-sarina.jpg",
+    avatar: "sarina-sarina.jpg",
     bio: `Professor Sarina Sarina is the head of the research group at the University of Sydney. Her research interests include catalysis, materials science, and photochemistry.`
   },
   {
